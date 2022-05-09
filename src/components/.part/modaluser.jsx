@@ -76,7 +76,9 @@ export default function ModalUser(props) {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
-        <Form.Item label="도시선택">
+
+        <h2> • 단말기 사용자 정보</h2>
+        <Form.Item label="마을선택">
           <Input.Group compact>
             <Select style={{ width: "30%" }} defaultValue="Home">
               <Option value="Home">Home</Option>
@@ -89,22 +91,54 @@ export default function ModalUser(props) {
             />
           </Input.Group>
         </Form.Item>
-        <br />
-        <Form.Item label="날짜">
-          <DatePicker />
+
+        <Form.Item label="사용자 이름">
+          <Input
+            showCount
+            maxLength={10}
+            onChange={onChange}
+            placeholder="이름을 입력해주세요"
+          />
+        </Form.Item> 
+
+        <Form.Item label="사용자 전화번호">
+          <Input
+            showCount
+            maxLength={13}
+            onChange={onChange}
+            placeholder="010-XXXX-XXXX"
+          />
         </Form.Item>
-        <br />
-        <Input
-          showCount
-          maxLength={20}
-          onChange={onChange}
-          placeholder="제목을 입력하세요"
-        />
-        <br />
-        <br />
-        <TextArea showCount maxLength={100} onChange={onChange} />
+
+        <Form.Item label="사용자 주소">
+          <Input
+            showCount
+            //maxLength={11}
+            onChange={onChange}
+            placeholder="주소를 입력해주세요"
+          />
+        </Form.Item>
+
+        <br/>
+        <h2> • 보호자 정보</h2>
+        <Form.Item label="보호자 이름">
+          <Input
+            showCount
+            maxLength={10}
+            onChange={onChange}
+            placeholder="이름을 입력해주세요"
+          />
+        </Form.Item>
+
+        <Form.Item label="보호자 전화번호">
+          <Input
+            showCount
+            maxLength={13}
+            onChange={onChange}
+            placeholder="010-XXXX-XXXX "
+          />
+        </Form.Item>
       </Modal>
-      <Input placeholder="Basic usage" />
     </>
   );
 }

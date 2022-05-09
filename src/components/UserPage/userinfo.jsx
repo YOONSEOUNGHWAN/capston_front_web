@@ -8,21 +8,73 @@ import Piechart from "../.part/piechart";
 export default function UserInfo() {
   return (
     <>
-      <div className="Container">
-        <div className="leftside_userinfo">
-          <Card title="김이박" size="large" className="card">
-            <p>엄마번호: 010-0011-1100</p>
-            <p>주소: ㅁㄴㅇㄹㄴ</p>
-            <p>나이 : 84</p>
-            <p>전화번호: 02-323-2313</p>
-            <p>등등의 정보</p>
+      <div className="Container" id="user_info">
+        <br /><br />
+        <p className="title"> ** 마을 통계</p>
+        <div className="stats">
+          <Card title="컴공 마을 차트" size="large" className="card" id="chart_card">
+            <Piechart />
           </Card>
-          <Piechart />
+
+          <Card title=" 컴공 마을 데이터" size="large" className="card" id="data_card">
+            <DataTable />
+          </Card>
         </div>
-        <div className="rightside_userinfo">
-          <DataTable />
+
+        <br /><br />
+
+        <p className="title"> ** 마을 사용자 통계</p>
+        <div className="user_info">
+          <Card title="로인" size="large" className="card" id="info">
+            <p>전화번호: 010-000-0000</p>
+            <p>주소: 서울특별시 광진구 군자동 어딘가</p>
+            <p>나이 : 84</p>
+            <p>보호자 성함: 로인아들</p>
+            <p>보호자 전화번호: 010-1111-1111</p>
+          </Card>
+
+          <Card title="로인2" size="large" className="card" id="info">
+            <p>전화번호: 010-000-0000</p>
+            <p>주소: 서울특별시 광진구 군자동 어딘가</p>
+            <p>나이 : 84</p>
+            <p>보호자 성함: 로인아들</p>
+            <p>보호자 전화번호: 010-1111-1111</p>
+          </Card>
+
+          <Card title="로인3" size="large" className="card" id="info">
+            <p>전화번호: 010-000-0000</p>
+            <p>주소: 서울특별시 광진구 군자동 어딘가</p>
+            <p>나이 : 84</p>
+            <p>보호자 성함: 로인아들</p>
+            <p>보호자 전화번호: 010-1111-1111</p>
+          </Card>
+
+          <Card title="로인4" size="large" className="card" id="info">
+            <p>전화번호: 010-000-0000</p>
+            <p>주소: 서울특별시 광진구 군자동 어딘가</p>
+            <p>나이 : 84</p>
+            <p>보호자 성함: 로인아들</p>
+            <p>보호자 전화번호: 010-1111-1111</p>
+          </Card>
+
+          <Card title="로인5" size="large" className="card" id="info">
+            <p>전화번호: 010-000-0000</p>
+            <p>주소: 서울특별시 광진구 군자동 어딘가</p>
+            <p>나이 : 84</p>
+            <p>보호자 성함: 로인아들</p>
+            <p>보호자 전화번호: 010-1111-1111</p>
+          </Card>
+
+          <Card title="로인6" size="large" className="card" id="info">
+            <p>전화번호: 010-000-0000</p>
+            <p>주소: 서울특별시 광진구 군자동 어딘가</p>
+            <p>나이 : 84</p>
+            <p>보호자 성함: 로인아들</p>
+            <p>보호자 전화번호: 010-1111-1111</p>
+          </Card>
         </div>
-      </div>
+
+      </div> 
     </>
   );
 }
