@@ -1,0 +1,14 @@
+.leftside_userinfo{
+    flex:1;
+    /* margin-top: 20px; */
+    flex-direction: column;
+}
+
+.rightside_userinfo{
+    flex:2;
+    /* margin:auto; */
+
+}
+.card{
+    width:30rem;
+}

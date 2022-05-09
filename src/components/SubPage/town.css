@@ -1,0 +1,36 @@
+.Container{
+    display: flex;
+    flex-direction: row;
+    margin:0px;
+    padding:0px;
+}
+
+.leftSide{
+    flex:2;
+    border-radius: 1px solid red;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rightSide_town{
+    flex:1;
+    border-radius: 2px solid black;
+    /* text-align: center; */
+    margin:auto;
+    
+
+}
+
+.button{
+
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.button_town{
+    margin-top: 100px;
+}
+
+.log{
+    margin-top: 5rem;
+}

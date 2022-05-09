@@ -1,0 +1,39 @@
+.Container{
+    display: flex;
+    flex-direction: row;
+    margin:0px;
+    padding:0px;
+}
+
+.leftSide{
+    flex:2;
+    border-radius: 1px solid red;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.leftUp{
+    flex:1;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.leftDown{
+    flex:2;
+}
+.rightSide{
+    flex:1;
+    border-radius: 2px solid black;
+    text-align: center;
+    margin:auto;
+}
+
+.button{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.log{
+    margin-top: 5rem;
+}
