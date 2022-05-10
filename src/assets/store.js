@@ -4,8 +4,11 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 // 개인데이터는 해당 컴포넌트에서 서버통신으로 받을 것.
 // 공유필요한 것만 여기서 설치하기...
 
+
+//axios -> 서버랑 통신 
 // like useState
 let user = createSlice({
+    // axios.get(url)
     name : "user",
     initialState :"윤승환",
     // 수정
