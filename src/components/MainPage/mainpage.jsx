@@ -9,6 +9,7 @@ import Tablelist from "../.part/tablelist";
 import Nav from "../.part/nav";
 
 export default function Middlepage() {
+
   return (
     <>
       <Nav />

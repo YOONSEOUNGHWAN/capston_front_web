@@ -5,12 +5,14 @@ import "./userinfo.css";
 import DataTable from "../.part/datatable";
 
 import Piechart from "../.part/piechart";
+import Nav from "../.part/nav";
 export default function UserInfo() {
   return (
     <>
       <div className="Container" id="user_info">
+        <Nav/>
         <br /><br />
-        <p className="title"> ** 마을 통계</p>
+
         <div className="stats">
           <Card title="컴공 마을 차트" size="large" className="card" id="chart_card">
             <Piechart />

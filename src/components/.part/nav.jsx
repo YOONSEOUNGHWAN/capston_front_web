@@ -9,14 +9,13 @@ import { changeName } from "../../assets/store";
 export default function Nav() {
   let name = "윤승환";
   let navigate = useNavigate();
-  let state = useSelector((state) =>{
-    return state
-  })
-  let user = useSelector((state) => state.user
-  )
-  let dispatch = useDispatch()
-  console.log(state.user)
-  console.log(state.data)
+  let state = useSelector((state) => {
+    return state;
+  });
+  let user = useSelector((state) => state.user);
+  let dispatch = useDispatch();
+  console.log(state.user);
+  console.log(state.data);
 
   const menu = (
     <Menu
@@ -38,18 +37,25 @@ export default function Nav() {
   return (
     <>
       <div className="Nav">
+        <a>
+          <span
+            className="title"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            집켜줘
+          </span>
+        </a>
+        {/* 관리자 페이지 만들어야함 */}
         <span
-          className="title"
+          className="User_name"
           onClick={() => {
-            navigate("/");
+            dispatch(changeName());
           }}
         >
-          집켜줘
+          {state.user} 관리자
         </span>
-        {/* 관리자 페이지 만들어야함 */}
-        <span className="User_name" onClick={()=>{
-          dispatch(changeName())
-        }}>{state.user} 관리자</span>
         <Dropdown overlay={menu}>
           <a onClick={(e) => e.preventDefault()}>
             <Space>

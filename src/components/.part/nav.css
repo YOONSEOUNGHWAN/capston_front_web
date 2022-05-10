@@ -1,6 +1,7 @@
 a {
     cursor: pointer;
 }
+
 .Nav {
     background: black;
     width: 100%;
@@ -20,4 +21,5 @@ a {
 
 .title{
     cursor: pointer;
+    color:white;
 }
