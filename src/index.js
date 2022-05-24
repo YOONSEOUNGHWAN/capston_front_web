@@ -9,14 +9,16 @@ import { Provider } from "react-redux";
 import store from "./assets/store";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import AuthService from "./services/auth_service";
 
+const authService = new AuthService();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store ={store}>
     <React.StrictMode>
       <BrowserRouter>
-        <App />
+        <App authService={authService}/>
       </BrowserRouter>
     </React.StrictMode>
   </Provider>

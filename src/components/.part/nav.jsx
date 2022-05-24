@@ -6,6 +6,7 @@ import "./nav.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { changeName } from "../../assets/store";
+
 export default function Nav() {
   let name = "윤승환";
   let navigate = useNavigate();

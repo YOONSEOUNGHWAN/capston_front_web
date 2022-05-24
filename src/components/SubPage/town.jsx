@@ -4,6 +4,7 @@ import Nav from "../.part/nav";
 import Piechart from "../.part/piechart";
 import Tablelist from "../.part/tablelist";
 import "./town.css";
+
 export default function Town() {
   return (
     <>

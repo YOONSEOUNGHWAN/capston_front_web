@@ -1,29 +1,40 @@
 import React from "react";
 import { Card } from "antd";
 import "./userinfo.css";
-
 import DataTable from "../.part/datatable";
-
 import Piechart from "../.part/piechart";
 import Nav from "../.part/nav";
+
 export default function UserInfo() {
   return (
     <>
       <div className="Container" id="user_info">
-        <Nav/>
-        <br /><br />
+        <Nav />
+        <br />
+        <br />
 
         <div className="stats">
-          <Card title="컴공 마을 차트" size="large" className="card" id="chart_card">
+          <Card
+            title="컴공 마을 차트"
+            size="large"
+            className="card"
+            id="chart_card"
+          >
             <Piechart />
           </Card>
 
-          <Card title=" 컴공 마을 데이터" size="large" className="card" id="data_card">
+          <Card
+            title=" 컴공 마을 데이터"
+            size="large"
+            className="card"
+            id="data_card"
+          >
             <DataTable />
           </Card>
         </div>
 
-        <br /><br />
+        <br />
+        <br />
 
         <p className="title"> ** 마을 사용자 통계</p>
         <div className="user_info">
@@ -75,8 +86,7 @@ export default function UserInfo() {
             <p>보호자 전화번호: 010-1111-1111</p>
           </Card>
         </div>
-
-      </div> 
+      </div>
     </>
   );
 }
