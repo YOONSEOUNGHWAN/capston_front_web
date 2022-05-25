@@ -1,11 +1,13 @@
 import React, { useRef } from "react";
-import Nav from "../.part/nav";
 import { Form, Input, Button, Checkbox } from "antd";
 
 import "./login.css";
 import { useNavigate } from "react-router-dom";
 
-export default function Login({ authService }) {
+import axios from "axios";
+
+
+export default function Login() {
   const idRef = useRef();
   const pwRef = useRef();
 
@@ -18,25 +20,35 @@ export default function Login({ authService }) {
     console.log("Failed:", errorInfo);
   };
 
-  const goToMain = (uid) => {
-    navigate("/main", {
-      state: { id: uid },
-    });
-  };
   const Login = (event) => {
     event.preventDefault();
-    console.log(idRef.current.input.value);
-    console.log(pwRef.current.input.value);
-
-    // authService //
-    // // 해당 함수에 id및 pw 입력
-    //   .login()
-    //   .then((data) => goToMain(data.user.uid));
+    const data = {
+      userId: idRef.current.input.value,
+      password: pwRef.current.input.value,
+    };
+    axios
+      .post("/api/auth/signin", data)
+      .then((res) => {
+        const role = res.data.data.role;
+        const username = res.data.data.username;
+        const uid = res.data.data.id;
+        if (role === "ROLE_USER") {
+          navigate("/subpage", {
+            state: { name: username, uid: uid, role: role },
+          });
+        } else {
+          navigate("/main", {
+            state: { name: username, uid: uid, role: role },
+          });
+        }
+      })
+      .catch((e) => {
+        alert("다시요청!");
+      });
   };
 
   return (
     <>
-      {/* <Nav /> */}
       <div className="Nav">
         <span
           className="title"

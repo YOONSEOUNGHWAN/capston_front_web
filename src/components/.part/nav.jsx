@@ -7,22 +7,20 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { changeName } from "../../assets/store";
 
-export default function Nav() {
-  let name = "윤승환";
+export default function Nav({ username, role }) {
   let navigate = useNavigate();
   let state = useSelector((state) => {
     return state;
   });
   let user = useSelector((state) => state.user);
-  let dispatch = useDispatch();
-  console.log(state.user);
-  console.log(state.data);
 
+  const check = role === "ROLE_USER" ? true : false
   const menu = (
     <Menu
       items={[
         {
-          label: <span onClick={() => navigate("/Callendar")}>마을 일정 </span>,
+          label: check && <span onClick={() => navigate("/Callendar")}>마을 일정 </span>,
+          disabled: false,
         },
         {
           label: <span onClick={() => navigate("/Graph")}>통계 보기</span>,
@@ -30,7 +28,7 @@ export default function Nav() {
         },
         {
           danger: true,
-          label: "logout",
+          label: <span onClick={() => navigate("/")}>logout</span>,
         },
       ]}
     />
@@ -48,15 +46,7 @@ export default function Nav() {
             집켜줘
           </span>
         </a>
-        {/* 관리자 페이지 만들어야함 */}
-        <span
-          className="User_name"
-          onClick={() => {
-            dispatch(changeName());
-          }}
-        >
-          {state.user} 관리자
-        </span>
+        <span className="User_name">{username} 관리자</span>
         <Dropdown overlay={menu}>
           <a onClick={(e) => e.preventDefault()}>
             <Space>

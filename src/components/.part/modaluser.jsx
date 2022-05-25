@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Modal, Button, Input, Select, Cascader, DatePicker, Form } from "antd";
+import axios from "axios";
 
-export default function ModalUser(props) {
+export default function ModalUser({ text, townId }) {
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
-  const [modalText, setModalText] = React.useState(props.text);
-  const { TextArea } = Input;
-  const { Option } = Select;
+  const [modalText, setModalText] = React.useState(text);
+  const [terminalId, setTerminalId] = useState()
+
+  let nameRef = useRef();
+  let phoneRef = useRef();
+  let addressRef = useRef();
+  let protectorNameRef = useRef();
+  let protectorPhoneRef = useRef();
 
   const showModal = () => {
     setVisible(true);
   };
+
 
   const handleOk = () => {
     setModalText("전송중...");
@@ -18,8 +25,38 @@ export default function ModalUser(props) {
     setTimeout(() => {
       setVisible(false);
       setConfirmLoading(false);
-      setModalText(props.text);
+      setModalText(text);
     }, 2000);
+
+    let data = {
+      townId: townId,
+      name: nameRef.current.input.value,
+      phone: phoneRef.current.input.value,
+      address: addressRef.current.input.value,
+    };
+    
+    axios
+      .post(`/api/terminal`, data)
+      .then((res) => {
+        setTerminalId(res.data.data[0].id)
+
+      })
+      .then(()=>{
+        let protector ={
+          townId: townId,
+          terminalId: terminalId,
+          name: protectorNameRef.current.input.value,
+          phone: protectorPhoneRef.current.input.value,
+        } 
+        axios
+        .post(`/api/protector`, protector)
+        .then((res)=>{
+          alert('전송완료')
+        })
+      })
+      .catch((e) => {
+        alert("다시요청!");
+      });
   };
 
   const handleCancel = () => {
@@ -29,40 +66,6 @@ export default function ModalUser(props) {
     console.log("Change:", e.target.value);
   };
 
-  const options = [
-    {
-      value: "zhejiang",
-      label: "Zhejiang",
-      children: [
-        {
-          value: "hangzhou",
-          label: "Hangzhou",
-          children: [
-            {
-              value: "xihu",
-              label: "West Lake",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      value: "jiangsu",
-      label: "Jiangsu",
-      children: [
-        {
-          value: "nanjing",
-          label: "Nanjing",
-          children: [
-            {
-              value: "zhonghuamen",
-              label: "Zhong Hua Men",
-            },
-          ],
-        },
-      ],
-    },
-  ];
 
   return (
     <>
@@ -76,21 +79,7 @@ export default function ModalUser(props) {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
-
         <h2> • 단말기 사용자 정보</h2>
-        <Form.Item label="마을선택">
-          <Input.Group compact>
-            <Select style={{ width: "30%" }} defaultValue="Home">
-              <Option value="Home">Home</Option>
-              <Option value="Company">Company</Option>
-            </Select>
-            <Cascader
-              style={{ width: "70%" }}
-              options={options}
-              placeholder="Select Address"
-            />
-          </Input.Group>
-        </Form.Item>
 
         <Form.Item label="사용자 이름">
           <Input
@@ -98,8 +87,9 @@ export default function ModalUser(props) {
             maxLength={10}
             onChange={onChange}
             placeholder="이름을 입력해주세요"
+            ref={nameRef}
           />
-        </Form.Item> 
+        </Form.Item>
 
         <Form.Item label="사용자 전화번호">
           <Input
@@ -107,6 +97,7 @@ export default function ModalUser(props) {
             maxLength={13}
             onChange={onChange}
             placeholder="010-XXXX-XXXX"
+            ref={phoneRef}
           />
         </Form.Item>
 
@@ -116,10 +107,11 @@ export default function ModalUser(props) {
             //maxLength={11}
             onChange={onChange}
             placeholder="주소를 입력해주세요"
+            ref={addressRef}
           />
         </Form.Item>
 
-        <br/>
+        <br />
         <h2> • 보호자 정보</h2>
         <Form.Item label="보호자 이름">
           <Input
@@ -127,6 +119,7 @@ export default function ModalUser(props) {
             maxLength={10}
             onChange={onChange}
             placeholder="이름을 입력해주세요"
+            ref={protectorNameRef}
           />
         </Form.Item>
 
@@ -136,6 +129,7 @@ export default function ModalUser(props) {
             maxLength={13}
             onChange={onChange}
             placeholder="010-XXXX-XXXX "
+            ref={protectorPhoneRef}
           />
         </Form.Item>
       </Modal>

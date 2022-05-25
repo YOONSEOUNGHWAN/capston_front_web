@@ -10,18 +10,25 @@ import store from "./assets/store";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AuthService from "./services/auth_service";
+import { QueryClient, QueryClientProvider } from "react-query";
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 const authService = new AuthService();
 
+const queryClient = new QueryClient();
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store ={store}>
-    <React.StrictMode>
-      <BrowserRouter>
-        <App authService={authService}/>
-      </BrowserRouter>
-    </React.StrictMode>
-  </Provider>
+  <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
+      <React.StrictMode>
+        <BrowserRouter>
+          <App authService={authService} />
+        </BrowserRouter>
+      </React.StrictMode>
+    </Provider>
+  </QueryClientProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

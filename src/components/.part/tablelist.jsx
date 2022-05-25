@@ -1,7 +1,20 @@
 import React from "react";
 import { Table, Tag, Space } from "antd";
+import { useQuery } from "react-query";
+import axios from "axios";
 
-export default function Tablelist() {
+export default function Tablelist({ townId }) {
+
+  let result =  useQuery("towndata", () => {
+    axios.get(`/api/terminal/${townId}`).then((res) => {
+      console.log(res.data)
+      return res.data;
+    });
+  });
+  // console.log(townId)
+
+
+  // console.log(result.data)
   const columns = [
     {
       title: "Name",
@@ -59,7 +72,7 @@ export default function Tablelist() {
       address: "New York No. 1 Lake Park",
       tags: ["nice", "developer"],
     },
-    
+
     {
       key: "2",
       name: "Jim Green",
@@ -123,7 +136,6 @@ export default function Tablelist() {
       address: "New York No. 1 Lake Park",
       tags: ["nice", "developer"],
     },
-    
   ];
   return <Table columns={columns} dataSource={data} />;
 }
