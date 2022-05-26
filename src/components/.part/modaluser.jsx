@@ -6,7 +6,7 @@ export default function ModalUser({ text, townId }) {
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const [modalText, setModalText] = React.useState(text);
-  const [terminalId, setTerminalId] = useState()
+  const [terminalId, setTerminalId] = useState();
 
   let nameRef = useRef();
   let phoneRef = useRef();
@@ -17,7 +17,6 @@ export default function ModalUser({ text, townId }) {
   const showModal = () => {
     setVisible(true);
   };
-
 
   const handleOk = () => {
     setModalText("전송중...");
@@ -34,25 +33,22 @@ export default function ModalUser({ text, townId }) {
       phone: phoneRef.current.input.value,
       address: addressRef.current.input.value,
     };
-    
+
     axios
       .post(`/api/terminal`, data)
       .then((res) => {
-        setTerminalId(res.data.data[0].id)
-
+        setTerminalId(res.data.data[0].id);
       })
-      .then(()=>{
-        let protector ={
+      .then(() => {
+        let protector = {
           townId: townId,
           terminalId: terminalId,
           name: protectorNameRef.current.input.value,
           phone: protectorPhoneRef.current.input.value,
-        } 
-        axios
-        .post(`/api/protector`, protector)
-        .then((res)=>{
-          alert('전송완료')
-        })
+        };
+        axios.post(`/api/protector`, protector).then((res) => {
+          alert("전송완료");
+        });
       })
       .catch((e) => {
         alert("다시요청!");
@@ -62,10 +58,6 @@ export default function ModalUser({ text, townId }) {
   const handleCancel = () => {
     setVisible(false);
   };
-  const onChange = (e) => {
-    console.log("Change:", e.target.value);
-  };
-
 
   return (
     <>
@@ -85,7 +77,6 @@ export default function ModalUser({ text, townId }) {
           <Input
             showCount
             maxLength={10}
-            onChange={onChange}
             placeholder="이름을 입력해주세요"
             ref={nameRef}
           />
@@ -95,7 +86,6 @@ export default function ModalUser({ text, townId }) {
           <Input
             showCount
             maxLength={13}
-            onChange={onChange}
             placeholder="010-XXXX-XXXX"
             ref={phoneRef}
           />
@@ -105,7 +95,7 @@ export default function ModalUser({ text, townId }) {
           <Input
             showCount
             //maxLength={11}
-            onChange={onChange}
+
             placeholder="주소를 입력해주세요"
             ref={addressRef}
           />
@@ -117,7 +107,6 @@ export default function ModalUser({ text, townId }) {
           <Input
             showCount
             maxLength={10}
-            onChange={onChange}
             placeholder="이름을 입력해주세요"
             ref={protectorNameRef}
           />
@@ -127,7 +116,6 @@ export default function ModalUser({ text, townId }) {
           <Input
             showCount
             maxLength={13}
-            onChange={onChange}
             placeholder="010-XXXX-XXXX "
             ref={protectorPhoneRef}
           />

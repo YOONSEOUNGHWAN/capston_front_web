@@ -7,19 +7,29 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { changeName } from "../../assets/store";
 
-export default function Nav({ username, role }) {
+export default function Nav({ username, role, townId }) {
   let navigate = useNavigate();
   let state = useSelector((state) => {
     return state;
   });
   let user = useSelector((state) => state.user);
 
-  const check = role === "ROLE_USER" ? true : false
+  const check = role === "ROLE_USER" ? true : false;
   const menu = (
     <Menu
       items={[
         {
-          label: check && <span onClick={() => navigate("/Callendar")}>마을 일정 </span>,
+          label: check && (
+            <span
+              onClick={() =>
+                navigate("/Callendar", {
+                  state: { townId: townId },
+                })
+              }
+            >
+              마을 일정{" "}
+            </span>
+          ),
           disabled: false,
         },
         {

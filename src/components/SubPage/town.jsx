@@ -25,18 +25,16 @@ export default function Town() {
       });
   });
 
-
-  // console.log(`hi${townId.data.data[0].id}`)
   return (
     <>
-      <Nav username={username} role={role} />
+      <Nav username={username} role={role} townId={townId}/>
       <div className="Container">
         <div className="leftSide">
           <p>000마을 인원</p>
           <Tablelist townId={townId} />
         </div>
         <div className="rightSide_town">
-          <Piechart />
+          <Piechart  />
           <div className="button_town">
             <span className="button">
               <ModalButton text="문자 버튼" />

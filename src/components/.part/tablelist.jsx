@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table, Tag, Space } from "antd";
 import { useQuery } from "react-query";
 import axios from "axios";
 
 export default function Tablelist({ townId }) {
-
-  let result =  useQuery("towndata", () => {
-    axios.get(`/api/terminal/${townId}`).then((res) => {
-      console.log(res.data)
-      return res.data;
-    });
+  const [townList, setTownList] = useState([]);
+  let result = useQuery("towndata", () => {
+    axios
+      .get(`/api/terminal/${townId}`)
+      .then((res) => {
+        let array = [...res.data.data];
+        array = array.map(({ id: key, ...rest }) => ({ key, ...rest }));
+        setTownList(array);
+        console.log(townList);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   });
-  // console.log(townId)
-
 
   // console.log(result.data)
   const columns = [
@@ -23,42 +28,62 @@ export default function Tablelist({ townId }) {
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
+      title: "Phone",
+      dataIndex: "phone",
+      key: "phone",
     },
     {
       title: "Address",
       dataIndex: "address",
       key: "address",
     },
-    {
-      title: "Tags",
-      key: "tags",
-      dataIndex: "tags",
-      render: (tags) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 5 ? "geekblue" : "green";
-            if (tag === "loser") {
-              color = "volcano";
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
-    },
+    // {
+    //   title: "Tags",
+    //   key: "tags",
+    //   dataIndex: "tags",
+    //   render: (tags) => (
+    //     <>
+    //       {tags.map((tag) => {
+    //         let color = tag.length > 5 ? "geekblue" : "green";
+    //         if (tag === "loser") {
+    //           color = "volcano";
+    //         }
+    //         return (
+    //           <Tag color={color} key={tag}>
+    //             {tag.toUpperCase()}
+    //           </Tag>
+    //         );
+    //       })}
+    //     </>
+    //   ),
+    // },
     {
       title: "Action",
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
+          <a
+            onClick={() => {
+              // console.log(text)
+            }}
+          >
+            {record.name} 더보기
+          </a>
+          <a
+            onClick={() => {
+              // console.log(text.key);
+              axios
+                .delete(`/api/terminal/${text.key}`)
+                .then((res) => {
+                  alert("삭제완료");
+                })
+                .catch((e) => {
+                  alert("삭제실패");
+                });
+            }}
+          >
+            삭제
+          </a>
         </Space>
       ),
     },
@@ -70,6 +95,7 @@ export default function Tablelist({ townId }) {
       name: "John Brown",
       age: 32,
       address: "New York No. 1 Lake Park",
+      phone: "1234",
       tags: ["nice", "developer"],
     },
 
@@ -137,5 +163,9 @@ export default function Tablelist({ townId }) {
       tags: ["nice", "developer"],
     },
   ];
-  return <Table columns={columns} dataSource={data} />;
+  return (
+    <>
+      <Table columns={columns} dataSource={townList} />;
+    </>
+  );
 }

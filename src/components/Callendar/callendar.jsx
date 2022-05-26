@@ -2,7 +2,9 @@ import React from "react";
 import { Calendar, Badge } from "antd";
 import "./callendar.css";
 import Nav from "../.part/nav";
+import { useLocation } from "react-router-dom";
 function getListData(value) {
+
   let listData;
   switch (value.date()) {
     case 8:
@@ -63,6 +65,8 @@ function monthCellRender(value) {
 }
 
 export default function Callendar() {
+  const location = useLocation();
+  let townId = location.state.townId;
   return (
     <>
       <Nav />
