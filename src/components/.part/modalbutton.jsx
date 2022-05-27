@@ -29,41 +29,6 @@ export default function ModalButton(props) {
     console.log("Change:", e.target.value);
   };
 
-  const options = [
-    {
-      value: "zhejiang",
-      label: "Zhejiang",
-      children: [
-        {
-          value: "hangzhou",
-          label: "Hangzhou",
-          children: [
-            {
-              value: "xihu",
-              label: "West Lake",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      value: "jiangsu",
-      label: "Jiangsu",
-      children: [
-        {
-          value: "nanjing",
-          label: "Nanjing",
-          children: [
-            {
-              value: "zhonghuamen",
-              label: "Zhong Hua Men",
-            },
-          ],
-        },
-      ],
-    },
-  ];
-
   return (
     <>
       <Button type="primary" onClick={showModal}>
@@ -76,23 +41,9 @@ export default function ModalButton(props) {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
-        <Form.Item label="도시선택">
-          <Input.Group compact>
-            <Select style={{ width: "30%" }} defaultValue="Home">
-              <Option value="Home">Home</Option>
-              <Option value="Company">Company</Option>
-            </Select>
-            <Cascader
-              style={{ width: "70%" }}
-              options={options}
-              placeholder="Select Address"
-            />
-          </Input.Group>
-        </Form.Item>
+
         <br />
-        <Form.Item label="날짜">
-          <DatePicker />
-        </Form.Item>
+      
         <br />
         <Input
           showCount

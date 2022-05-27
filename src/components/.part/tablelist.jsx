@@ -5,19 +5,42 @@ import axios from "axios";
 
 export default function Tablelist({ townId }) {
   const [townList, setTownList] = useState([]);
-  let result = useQuery("towndata", () => {
-    axios
-      .get(`/api/terminal/${townId}`)
-      .then((res) => {
-        let array = [...res.data.data];
-        array = array.map(({ id: key, ...rest }) => ({ key, ...rest }));
-        setTownList(array);
-        console.log(townList);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  });
+  if (townId) {
+    useQuery(
+      "towndata",
+      () => {
+        axios
+          .get(`/api/terminal/${townId}`)
+          .then((res) => {
+            let array = [...res.data.data];
+            array = array.map(({ id: key, ...rest }) => ({ key, ...rest }));
+            setTownList(array);
+            console.log(townList);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      },
+      [townId]
+    );
+  } else {
+    useQuery(
+      "towndata",
+      () => {
+        axios
+          .get("/api/terminal/")
+          .then((res) => {
+            let array = [...res.data.data];
+            array = array.map(({ id: key, ...rest }) => ({ key, ...rest }));
+            setTownList(array);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      },
+      [townId]
+    );
+  }
 
   // console.log(result.data)
   const columns = [

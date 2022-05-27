@@ -9,24 +9,14 @@ import Tablelist from "../.part/tablelist";
 import Nav from "../.part/nav";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import ModalText from "../.part/modaltext";
 
+// 시스템 관리자 페이지.
 export default function Middlepage() {
   let location = useLocation();
   let username = location.state.name;
   let role = location.state.role;
   let uid = location.state.uid;
-  console.log(username)
-  const [townId, setTownId] = useState();
-  useEffect(() => {
-    axios
-      .get(`/api/town/${uid}`) //
-      .then((res) => {
-        setTownId(res.data.data[0].id);
-      })
-      .catch((e) => {
-        console.log(`townidError${e}`);
-      });
-  });
 
 
   return (
@@ -37,7 +27,8 @@ export default function Middlepage() {
           <div className="leftSide">
             <div className="leftUp">
               <>
-                <Circle />
+              {/* 각 서클에는 */}
+                <Circle username={username} role={role}/>
               </>
             </div>
             <div className="leftDown">
@@ -50,7 +41,7 @@ export default function Middlepage() {
             </span>
             <Sidetable />
             <span className="button">
-              <ModalButton text="문자 버튼" />
+              <ModalText text="문자 버튼" />
             </span>
             <span className="button">
               <ModalButton text="행사 버튼" />
