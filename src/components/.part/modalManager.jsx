@@ -1,23 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Modal,
-  Button,
-  Input,
-  Select,
-  Cascader,
-  DatePicker,
-  Form,
-  Radio,
-} from "antd";
+import { Modal, Button, Input, Cascader, Form } from "antd";
 import axios from "axios";
 
 export default function ModalManager({ text }) {
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const [modalText, setModalText] = React.useState(text);
-  const [terminalId, setTerminalId] = useState();
-  const [userId, setUserId] = useState();
-  const [role, setRole] = useState("");
   const [townList, setTownList] = useState([]);
   const [townId, setTownId] = useState();
   useEffect(() => {
@@ -42,10 +30,6 @@ export default function ModalManager({ text }) {
   let emailRef = useRef();
   let addressRef = useRef();
   let phoneRef = useRef();
-  let townNameRef = useRef();
-  let townPeopleRef = useRef();
-  let IdRef = useRef();
-  let PwRef = useRef();
 
   const showModal = () => {
     setVisible(true);
@@ -72,7 +56,7 @@ export default function ModalManager({ text }) {
     axios
       .post("/api/manager/", data)
       .then((res) => {
-        alert("관리자 추가 성공")
+        alert("관리자 추가 성공");
       })
       .catch((e) => {
         alert("다시요청!");
@@ -84,8 +68,7 @@ export default function ModalManager({ text }) {
   };
 
   const onChange = (e) => {
-    setTownId(e[0])
-
+    setTownId(e[0]);
   };
 
   return (
@@ -139,13 +122,6 @@ export default function ModalManager({ text }) {
             ref={addressRef}
           />
         </Form.Item>
-
-        {/* <Form.Item label="마을 인원수">
-          <Input
-            placeholder="마을 인구수 등록"
-            ref={townPeopleRef}
-          />
-        </Form.Item> */}
       </Modal>
     </>
   );
