@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Circle from "../.part/circle";
 import Log from "../.part/log";
 import "./mainpage.css";
-import ModalButton from "../.part/modalbutton";
 import ModalUser from "../.part/modaluser";
 import Sidetable from "../.part/sidetable";
 import Tablelist from "../.part/tablelist";
@@ -10,6 +9,9 @@ import Nav from "../.part/nav";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import ModalText from "../.part/modaltext";
+import ModalEvent from "../.part/modalevent";
+import ModalTown from "../.part/modalTown";
+import ModalManager from "../.part/modalManager";
 
 // 시스템 관리자 페이지.
 export default function Middlepage() {
@@ -22,7 +24,7 @@ export default function Middlepage() {
   return (
     <>
       <div className="login_box">
-        <Nav username={username} role={role} />
+        <Nav username={username} role={false} />
         <div className="Container">
           <div className="leftSide">
             <div className="leftUp">
@@ -37,14 +39,17 @@ export default function Middlepage() {
           </div>
           <div className="rightSide">
             <span className="button">
-              <ModalUser text="사용자 추가" />
+              <ModalTown text="마을 추가" />
+              <ModalManager text="관리자 추가"/>
             </span>
             <Sidetable />
             <span className="button">
-              <ModalText text="문자 버튼" />
+              전체전송 기능 있으면 추가할 예정
+              {/* <ModalText text="문자 버튼" /> */}
             </span>
             <span className="button">
-              <ModalButton text="행사 버튼" />
+              {/* <ModalEvent text="행사 버튼" /> */}
+              전체 행사등록할 수 있으면 할 예정
             </span>
             <p className="log">
               <Log />

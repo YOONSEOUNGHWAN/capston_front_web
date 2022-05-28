@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import ModalButton from "../.part/modalbutton";
+
+import ModalEvent from "../.part/modalevent";
 import ModalText from "../.part/modaltext";
 import ModalUser from "../.part/modaluser";
 import Nav from "../.part/nav";
@@ -39,7 +40,7 @@ export default function Town() {
     <>
       {townId && (
         <>
-          <Nav username={username} role={role} townId={townId} />
+          <Nav username={username} role={true} townId={townId} />
           <div className="Container">
             <div className="leftSide">
               <p>{town_name} 인원</p>
@@ -52,7 +53,7 @@ export default function Town() {
                   <ModalText text="문자 버튼" townId={townId} />
                 </span>
                 <span className="button">
-                  <ModalButton text="행사 버튼" />
+                  <ModalEvent text="행사 버튼" />
                 </span>
                 <div className="userbutton">
                   <ModalUser text="사용자추가" townId={townId} />

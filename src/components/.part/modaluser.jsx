@@ -33,7 +33,9 @@ export default function ModalUser({ text, townId }) {
       phone: phoneRef.current.input.value,
       address: addressRef.current.input.value,
     };
-    console.log(`사용자 정보 ${data.townId} ${data.name} ${data.address} ${data.phone}`);
+    console.log(
+      `사용자 정보 ${data.townId} ${data.name} ${data.address} ${data.phone}`
+    );
     axios
       .post(`/api/terminal`, data)
       .then((res) => {
@@ -46,7 +48,9 @@ export default function ModalUser({ text, townId }) {
           name: protectorNameRef.current.input.value,
           phone: protectorPhoneRef.current.input.value,
         };
-        console.log(`사용자 정보 ${protector.townId} ${protector.terminalId} ${protector.phone} ${protector.name}`);
+        console.log(
+          `사용자 정보 ${protector.townId} ${protector.terminalId} ${protector.phone} ${protector.name}`
+        );
 
         axios.post(`/api/protector`, protector).then((res) => {
           alert("전송완료");
@@ -88,7 +92,7 @@ export default function ModalUser({ text, townId }) {
           <Input
             showCount
             maxLength={13}
-            placeholder="010-XXXX-XXXX"
+            placeholder="01012345678('-'제거)"
             ref={phoneRef}
           />
         </Form.Item>
@@ -118,7 +122,7 @@ export default function ModalUser({ text, townId }) {
           <Input
             showCount
             maxLength={13}
-            placeholder="010-XXXX-XXXX "
+            placeholder="01012345678('-'제거)"
             ref={protectorPhoneRef}
           />
         </Form.Item>

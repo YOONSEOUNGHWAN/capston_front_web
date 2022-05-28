@@ -1,7 +1,8 @@
 import React from "react";
 import { Modal, Button, Input, Select, Cascader, DatePicker, Form } from "antd";
+const {RangePicker} = DatePicker;
 
-export default function ModalButton(props) {
+export default function ModalEvent(props) {
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const [modalText, setModalText] = React.useState(props.text);
@@ -26,7 +27,7 @@ export default function ModalButton(props) {
     setVisible(false);
   };
   const onChange = (e) => {
-    console.log("Change:", e.target.value);
+    console.log("Change:", e[0]._d);
   };
 
   return (
@@ -41,9 +42,9 @@ export default function ModalButton(props) {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
-
+        <RangePicker onChange={onChange}/>
         <br />
-      
+
         <br />
         <Input
           showCount

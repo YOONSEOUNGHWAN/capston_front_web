@@ -45,6 +45,7 @@ export default function Circle({ username, role }) {
 
 function Town({ townId, username, role, people_num, town_name }) {
   let navigate = useNavigate();
+
   return (
     <span
       style={{ marginRight: "30px" }}

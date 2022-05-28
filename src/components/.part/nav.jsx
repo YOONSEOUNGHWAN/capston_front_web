@@ -14,12 +14,12 @@ export default function Nav({ username, role, townId }) {
   });
   let user = useSelector((state) => state.user);
 
-  const check = role === "ROLE_USER" ? true : false;
+
   const menu = (
     <Menu
       items={[
         {
-          label: check && (
+          label: role && (
             <span
               onClick={() =>
                 navigate("/Callendar", {
