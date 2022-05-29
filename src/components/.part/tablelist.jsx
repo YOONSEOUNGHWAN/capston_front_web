@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Table, Tag, Space } from "antd";
 import { useQuery } from "react-query";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function Tablelist({ townId }) {
+export default function Tablelist({ townId, townName }) {
   const [townList, setTownList] = useState([]);
+  const navigate = useNavigate();
   if (townId) {
     useQuery(
       "towndata",
@@ -65,9 +67,11 @@ export default function Tablelist({ townId }) {
       render: (text, record) => (
         <Space size="middle">
           <a
-            onClick={() => {
-              // console.log(text)
-            }}
+            onClick={() =>
+              navigate("/user", {
+                state: { userdata: text, townName: townName },
+              })
+            }
           >
             {record.name} 더보기
           </a>

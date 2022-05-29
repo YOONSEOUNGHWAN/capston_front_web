@@ -6,7 +6,6 @@ export default function ModalUser({ text, townId }) {
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const [modalText, setModalText] = React.useState(text);
-  const [terminalId, setTerminalId] = useState();
 
   let nameRef = useRef();
   let phoneRef = useRef();
@@ -39,9 +38,9 @@ export default function ModalUser({ text, townId }) {
     axios
       .post(`/api/terminal`, data)
       .then((res) => {
-        setTerminalId(res.data.data[0].id);
+        return res.data.data.at(-1).id
       })
-      .then(() => {
+      .then((terminalId) => {
         let protector = {
           townId: townId,
           terminalId: terminalId,

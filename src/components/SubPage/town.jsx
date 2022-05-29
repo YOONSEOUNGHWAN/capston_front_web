@@ -44,7 +44,7 @@ export default function Town() {
           <div className="Container">
             <div className="leftSide">
               <p>{town_name} 인원</p>
-              <Tablelist townId={townId} role={role} />
+              <Tablelist townId={townId} townName={town_name} />
             </div>
             <div className="rightSide_town">
               <Piechart />
