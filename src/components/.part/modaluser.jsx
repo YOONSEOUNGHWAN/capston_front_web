@@ -37,6 +37,7 @@ export default function ModalUser({ text, townId }) {
     );
     axios
       .post(`/api/terminal`, data)
+      //해당 사용자의 정보를 list로 받아오기에 가장 최근 정보를 가져와서 세팅해줘야함.
       .then((res) => {
         return res.data.data.at(-1).id
       })

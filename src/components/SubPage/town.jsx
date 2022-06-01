@@ -23,6 +23,7 @@ export default function Town() {
     if (role === "ROLE_USER") {
       axios
         .get(`/api/town/${uid}`) //
+        //한명의 관리자가 여러개의 마을을 관리할 수 있는 시스템은 아닌데, 일단 첫번째 데이터가 맞음
         .then((res) => {
           setTownId(res.data.data[0].id);
           setTown_name(res.data.data[0].town_name);
@@ -44,10 +45,14 @@ export default function Town() {
           <div className="Container">
             <div className="leftSide">
               <p>{town_name} 인원</p>
-              <Tablelist townId={townId} townName={town_name} />
+              <Tablelist
+                townId={townId}
+                townName={town_name}
+                loginName={username}
+              />
             </div>
             <div className="rightSide_town">
-              <Piechart />
+              <Piechart townId={townId} townName={town_name} />
               <div className="button_town">
                 <span className="button">
                   <ModalText text="문자 버튼" townId={townId} />

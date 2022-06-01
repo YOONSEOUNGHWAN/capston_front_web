@@ -27,7 +27,7 @@ export default function Nav({ username, role, townId }) {
                 })
               }
             >
-              마을 일정{" "}
+              마을 일정
             </span>
           ),
           disabled: false,

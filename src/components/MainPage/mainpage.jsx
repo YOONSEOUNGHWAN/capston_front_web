@@ -38,18 +38,12 @@ export default function Middlepage() {
             </div>
           </div>
           <div className="rightSide">
-            <span className="button">
-              <ModalTown text="마을 추가" />
-              <ModalManager text="관리자 추가"/>
-            </span>
             <Sidetable />
             <span className="button">
-              전체전송 기능 있으면 추가할 예정
-              {/* <ModalText text="문자 버튼" /> */}
+              <ModalTown text="마을 추가" />
             </span>
             <span className="button">
-              {/* <ModalEvent text="행사 버튼" /> */}
-              전체 행사등록할 수 있으면 할 예정
+            <ModalManager text="관리자 추가"/>
             </span>
             <p className="log">
               <Log />

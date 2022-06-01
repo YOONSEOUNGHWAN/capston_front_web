@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Card } from "antd";
 import "./userinfo.css";
 
-import DataTable from "../.part/datatable";
 import Nav from "../.part/nav";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+
+import Graph from "../.part/graph";
+import { useQuery } from "react-query";
 
 export default function UserInfo() {
   const location = useLocation();
@@ -13,6 +15,8 @@ export default function UserInfo() {
   const userPhone = location.state.userdata.phone;
   const userAddress = location.state.userdata.address;
   const userId = location.state.userdata.key;
+  const loginName = location.state.loginName;
+  const townId = location.state.userdata.townId;
   const townName = location.state.townName;
 
   const [protectorName, setProtectorName] = useState("");
@@ -28,11 +32,12 @@ export default function UserInfo() {
       .catch((e) => {
         console.log(`Protector info Error${e}`);
       });
-  }, []);
+  }, [userId]);
+
 
   return (
     <>
-      <Nav username={userName}/>
+      <Nav username={loginName} role={true} townId={townId} />
       <div className="Container" id="user_content">
         <br />
         <br />
@@ -71,7 +76,8 @@ export default function UserInfo() {
             className="card"
             id="data_card"
           >
-            <DataTable />
+            {/* <DataTable /> */}
+            <Graph userId={userId} />
           </Card>
         </div>
       </div>
