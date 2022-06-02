@@ -5,16 +5,19 @@ import { useQuery } from "react-query";
 import CanvasJSReact from "../../assets/canvasjs.react";
 
 let CanvasJSChart = CanvasJSReact.CanvasJSChart;
-
-// const year = item.time.slice(0, 4);
-// const month = item.time.slice(5, 7);
-// const day = item.time.slice(8, 10);
-// const hour = item.time.slice(11, 13);
-// const min = item.time.slice(14, 16);
-// const sec = item.time.slice(17, 19);
-export default function Graph({ userData }) {
-  console.log(userData);
-
+export default function Graph({ userId }) {
+  const [userData, setUserData] = useState([]);
+  useQuery("userData", () => {
+    axios
+      .get(`/api/terminal_info/1`)
+      .then((res) => {
+        setUserData(res.data.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  });
+  
   useEffect(() => {
     const camera = [];
     const flame = [];
