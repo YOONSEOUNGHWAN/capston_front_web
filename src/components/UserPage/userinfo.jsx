@@ -21,6 +21,7 @@ export default function UserInfo() {
 
   const [protectorName, setProtectorName] = useState("");
   const [protectorPhone, setProtectorPhone] = useState("");
+  const [userData, setUserData] = useState([])
   useEffect(() => {
     axios
       .get(`/api/protector/terminal/${userId}`) //
@@ -33,6 +34,22 @@ export default function UserInfo() {
         console.log(`Protector info Error${e}`);
       });
   }, [userId]);
+
+  useQuery(
+    "userData",
+    () => {
+      axios
+        .get(`/api/terminal_info/1`)
+        .then((res) => {
+          setUserData(res.data.data)
+
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    [userId]
+  );
 
 
   return (
@@ -77,7 +94,7 @@ export default function UserInfo() {
             id="data_card"
           >
             {/* <DataTable /> */}
-            <Graph userId={userId} />
+            <Graph userData={userData} />
           </Card>
         </div>
       </div>
