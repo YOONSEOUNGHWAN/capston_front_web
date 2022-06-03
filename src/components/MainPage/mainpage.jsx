@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Circle from "../.part/circle";
 import Log from "../.part/log";
 import "./mainpage.css";
-import ModalUser from "../.part/modaluser";
+
 import Sidetable from "../.part/sidetable";
 import Tablelist from "../.part/tablelist";
 import Nav from "../.part/nav";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
-import ModalText from "../.part/modaltext";
-import ModalEvent from "../.part/modalevent";
+
 import ModalTown from "../.part/modalTown";
 import ModalManager from "../.part/modalManager";
 
@@ -18,8 +16,6 @@ export default function Middlepage() {
   let location = useLocation();
   let username = location.state.name;
   let role = location.state.role;
-  let uid = location.state.uid;
-
 
   return (
     <>
@@ -29,8 +25,8 @@ export default function Middlepage() {
           <div className="leftSide">
             <div className="leftUp">
               <>
-              {/* 각 서클에는 */}
-                <Circle username={username} role={role}/>
+                {/* 각 서클에는 */}
+                <Circle username={username} role={role} />
               </>
             </div>
             <div className="leftDown">
@@ -43,7 +39,7 @@ export default function Middlepage() {
               <ModalTown text="마을 추가" />
             </span>
             <span className="button">
-            <ModalManager text="관리자 추가"/>
+              <ModalManager text="관리자 추가" />
             </span>
             <p className="log">
               <Log />

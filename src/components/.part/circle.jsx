@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Progress, Pagination, PageHeader } from "antd";
+import { Progress} from "antd";
 import Slider from "react-slick";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -51,7 +51,12 @@ function Town({ townId, username, role, people_num, town_name }) {
       style={{ marginRight: "30px" }}
       onClick={() =>
         navigate("/subPage", {
-          state: { name: username, uid: townId, role: role, town_name:town_name },
+          state: {
+            name: username,
+            uid: townId,
+            role: role,
+            town_name: town_name,
+          },
         })
       }
     >
@@ -63,15 +68,3 @@ function Town({ townId, username, role, people_num, town_name }) {
     </span>
   );
 }
-
-// <span
-// style={{ marginRight: "30px" }}
-// onClick={() =>
-//   navigate("/subPage", {
-//     // 여기서 넘겨주는 uid는 사실상 townid가 되어야한다.
-//     state: { name: username, uid: uid, role: role },
-//   })
-// }
-// >
-// <Progress type="circle" percent={100} format={() => `00마을`} />
-// </span>

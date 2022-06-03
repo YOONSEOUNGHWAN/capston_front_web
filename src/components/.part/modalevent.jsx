@@ -1,13 +1,13 @@
 import React from "react";
-import { Modal, Button, Input, Select, Cascader, DatePicker, Form } from "antd";
-const {RangePicker} = DatePicker;
+import { Modal, Button, Input, DatePicker } from "antd";
+const { RangePicker } = DatePicker;
 
 export default function ModalEvent(props) {
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const [modalText, setModalText] = React.useState(props.text);
   const { TextArea } = Input;
-  const { Option } = Select;
+
 
   const showModal = () => {
     setVisible(true);
@@ -42,7 +42,7 @@ export default function ModalEvent(props) {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
-        <RangePicker onChange={onChange}/>
+        <RangePicker onChange={onChange} />
         <br />
 
         <br />

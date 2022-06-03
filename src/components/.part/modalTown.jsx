@@ -1,29 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Modal,
-  Button,
-  Input,
-  Select,
-  Cascader,
-  DatePicker,
-  Form,
-  Radio,
-} from "antd";
+import React, { useRef, useState } from "react";
+import { Modal, Button, Input, Form, Radio } from "antd";
 import axios from "axios";
 
 export default function ModalTown({ text, townId }) {
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const [modalText, setModalText] = React.useState(text);
-  const [terminalId, setTerminalId] = useState();
-  const [userId, setUserId] = useState();
+
   const [role, setRole] = useState("");
 
   let nameRef = useRef();
   let emailRef = useRef();
-  let addressRef = useRef();
+
   let townNameRef = useRef();
-  let townPeopleRef = useRef();
+
   let IdRef = useRef();
   let PwRef = useRef();
   let townAddressRef = useRef();
@@ -163,13 +153,6 @@ export default function ModalTown({ text, townId }) {
             ref={townAddressRef}
           />
         </Form.Item>
-
-        {/* <Form.Item label="마을 인원수">
-          <Input
-            placeholder="마을 인구수 등록"
-            ref={townPeopleRef}
-          />
-        </Form.Item> */}
       </Modal>
     </>
   );

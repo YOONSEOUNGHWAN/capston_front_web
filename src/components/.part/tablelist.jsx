@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table, Tag, Space } from "antd";
+import { Table, Space } from "antd";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";

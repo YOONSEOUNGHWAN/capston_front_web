@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-
 export default function Login() {
   const idRef = useRef();
   const pwRef = useRef();

@@ -4,7 +4,6 @@ import "./callendar.css";
 import Nav from "../.part/nav";
 import { useLocation } from "react-router-dom";
 function getListData(value) {
-
   let listData;
   switch (value.date()) {
     case 8:
@@ -66,10 +65,12 @@ function monthCellRender(value) {
 
 export default function Callendar() {
   const location = useLocation();
+  let name = location.state.name;
+  let role = location.state.role;
   let townId = location.state.townId;
   return (
     <>
-      <Nav />
+      <Nav username={name} role={role} townId={townId} />
       <Calendar
         dateCellRender={dateCellRender}
         monthCellRender={monthCellRender}

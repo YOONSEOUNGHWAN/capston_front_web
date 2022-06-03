@@ -1,20 +1,11 @@
 import React from "react";
 import { Menu, Dropdown, Space } from "antd";
 import { DownOutlined } from "@ant-design/icons";
-
 import "./nav.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { changeName } from "../../assets/store";
 
 export default function Nav({ username, role, townId }) {
   let navigate = useNavigate();
-  let state = useSelector((state) => {
-    return state;
-  });
-  let user = useSelector((state) => state.user);
-
-
   const menu = (
     <Menu
       items={[
@@ -23,7 +14,7 @@ export default function Nav({ username, role, townId }) {
             <span
               onClick={() =>
                 navigate("/Callendar", {
-                  state: { townId: townId },
+                  state: { townId: townId, name: username, role: role },
                 })
               }
             >
@@ -33,7 +24,17 @@ export default function Nav({ username, role, townId }) {
           disabled: false,
         },
         {
-          label: <span onClick={() => navigate("/Graph")}>통계 보기</span>,
+          label: (
+            <span
+              onClick={() =>
+                navigate("/Graph", {
+                  state: { townId: townId, name: username, role },
+                })
+              }
+            >
+              통계 보기
+            </span>
+          ),
           disabled: false,
         },
         {
@@ -47,14 +48,7 @@ export default function Nav({ username, role, townId }) {
     <>
       <div className="Nav">
         <a>
-          <span
-            className="title"
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            집켜줘
-          </span>
+          <span className="title">집켜줘</span>
         </a>
         <span className="User_name">{username} 관리자</span>
         <Dropdown overlay={menu}>

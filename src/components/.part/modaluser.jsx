@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Modal, Button, Input, Select, Cascader, DatePicker, Form } from "antd";
+import React, { useRef } from "react";
+import { Modal, Button, Input, Form } from "antd";
 import axios from "axios";
 
 export default function ModalUser({ text, townId }) {
@@ -39,7 +39,7 @@ export default function ModalUser({ text, townId }) {
       .post(`/api/terminal`, data)
       //해당 사용자의 정보를 list로 받아오기에 가장 최근 정보를 가져와서 세팅해줘야함.
       .then((res) => {
-        return res.data.data.at(-1).id
+        return res.data.data.at(-1).id;
       })
       .then((terminalId) => {
         let protector = {

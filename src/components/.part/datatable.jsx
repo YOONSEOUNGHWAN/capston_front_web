@@ -1,76 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table } from "antd";
+import { useQuery } from "react-query";
+import axios from "axios";
 
-const columns = [
-  {
-    title: "날짜",
-    dataIndex: "name",
-  },
-  {
-    title: "센서1",
-    dataIndex: "chinese",
-    sorter: {
-      compare: (a, b) => a.chinese - b.chinese,
-      multiple: 3,
+export default function DataTable({ townId }) {
+  const [data, setData] = useState([]);
+
+  if (townId) {
+    useQuery(
+      "messagedata",
+      () => {
+        axios
+          .get(`/api/message/${townId}`)
+          .then((res) => {
+            let update = [...res.data.data];
+            update = update.map(({ id: key, ...rest }) => ({ key, ...rest }));
+            setData(update);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      },
+      [townId]
+    );
+  } else {
+    useQuery(
+      "messagedata",
+      () => {
+        axios
+          .get("/api/message")
+          .then((res) => {
+            let update = [...res.data.data];
+            update = update.map(({ id: key, ...rest }) => ({ key, ...rest }));
+            setData(update);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      },
+      [townId]
+    );
+  }
+
+  const columns = [
+    {
+      title: "날짜",
+      dataIndex: "time",
+      sorter: {
+        compare: (a, b) => 1,
+        multiple: 1,
+      },
     },
-  },
-  {
-    title: "성공?",
-    dataIndex: "math",
-    sorter: {
-      compare: (a, b) => a.math - b.math,
-      multiple: 2,
+    {
+      title: "내용",
+      dataIndex: "content",
     },
-  },
-  {
-    title: "실패",
-    dataIndex: "english",
-    sorter: {
-      compare: (a, b) => a.english - b.english,
-      multiple: 1,
+    {
+      title: "target(p=보호자, m=관리자, a=전체)",
+      dataIndex: "target",
     },
-  },
-];
+  ];
 
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    chinese: 98,
-    math: 60,
-    english: 70,
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    chinese: 98,
-    math: 66,
-    english: 89,
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    chinese: 98,
-    math: 90,
-    english: 70,
-  },
-  {
-    key: "4",
-    name: "Jim Red",
-    chinese: 88,
-    math: 99,
-    english: 89,
-  },
-];
-
-function onChange(pagination, filters, sorter, extra) {
-  console.log("params", pagination, filters, sorter, extra);
-}
-
-export default function DataTable() {
   return (
     <>
-      <Table columns={columns} dataSource={data} onChange={onChange} />
+      <Table columns={columns} dataSource={data} />
     </>
   );
 }

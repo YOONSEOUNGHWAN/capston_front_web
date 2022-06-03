@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 import Graph from "../.part/graph";
-import { useQuery } from "react-query";
 
 export default function UserInfo() {
   const location = useLocation();
@@ -34,7 +33,6 @@ export default function UserInfo() {
         console.log(`Protector info Error${e}`);
       });
   }, [userId]);
-
 
   return (
     <>
@@ -72,7 +70,7 @@ export default function UserInfo() {
           </Card>
 
           <Card
-            title="***님의 정보"
+            title={`${userName} 센서 정보`}
             size="large"
             className="card"
             id="data_card"
