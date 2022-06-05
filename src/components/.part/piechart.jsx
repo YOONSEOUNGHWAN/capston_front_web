@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CanvasJSReact from "../../assets/canvasjs.react";
 let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -15,7 +15,7 @@ export default function Piechart({ townName, townId }) {
     axios
       .get(`/api/town`)
       .then((res) => {
-        return res.data.data.filter(item => item.id == townId)[0]
+        return res.data.data.filter((item) => item.id == townId)[0];
       })
       .then((data) => {
         setAnnounce_num(data.announce_num);
@@ -52,16 +52,13 @@ export default function Piechart({ townName, townId }) {
           { y: event_num, label: "행사횟수" },
           { y: people_num, label: "마을인원" },
           { y: urgent_announce_num, label: "긴급호출" },
-
         ],
       },
     ],
   };
   return (
     <>
-      <CanvasJSChart
-        options={options}
-      />
+      <CanvasJSChart options={options} />
     </>
   );
 }

@@ -2,7 +2,7 @@
   "name": "capston",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://3.39.183.150:8080",
+  "proxy": "http://3.39.183.150:8080",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.14.1",
@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.2.1",
     "antd": "^4.20.3",
     "axios": "^0.27.2",
+    "http-proxy-middleware": "^2.0.6",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-query": "^3.39.0",

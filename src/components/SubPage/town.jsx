@@ -41,7 +41,7 @@ export default function Town() {
     <>
       {townId && (
         <>
-          <Nav username={username} role={true} townId={townId} />
+          <Nav username={username} role={role} townId={townId} uid={uid}/>
           <div className="Container">
             <div className="leftSide">
               <p>{town_name} 인원</p>
@@ -49,6 +49,8 @@ export default function Town() {
                 townId={townId}
                 townName={town_name}
                 loginName={username}
+                uid = {uid}
+                role = {role}
               />
             </div>
             <div className="rightSide_town">

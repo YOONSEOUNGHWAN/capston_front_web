@@ -4,17 +4,17 @@ import { DownOutlined } from "@ant-design/icons";
 import "./nav.css";
 import { useNavigate } from "react-router-dom";
 
-export default function Nav({ username, role, townId }) {
+export default function Nav({ uid, username, role, townId }) {
   let navigate = useNavigate();
   const menu = (
     <Menu
       items={[
         {
-          label: role && (
+        label: role && (
             <span
               onClick={() =>
                 navigate("/Callendar", {
-                  state: { townId: townId, name: username, role: role },
+                  state: { uid:uid, townId: townId, name: username, role: role },
                 })
               }
             >
@@ -28,7 +28,7 @@ export default function Nav({ username, role, townId }) {
             <span
               onClick={() =>
                 navigate("/Graph", {
-                  state: { townId: townId, name: username, role },
+                  state: { uid:uid, townId: townId, name: username, role:role },
                 })
               }
             >
@@ -48,7 +48,17 @@ export default function Nav({ username, role, townId }) {
     <>
       <div className="Nav">
         <a>
-          <span className="title">집켜줘</span>
+          <span className="title" onClick={()=>{
+            if(role == "ROLE_USER"){
+              navigate("/subpage",{
+                state: { name: username, uid: uid, role: role },
+              })
+            } else{
+              navigate("/main",{
+                state: { name: username, uid: uid, role: role },
+              })
+            }
+          }}>집켜줘</span>
         </a>
         <span className="User_name">{username} 관리자</span>
         <Dropdown overlay={menu}>

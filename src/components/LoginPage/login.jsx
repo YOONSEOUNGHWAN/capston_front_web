@@ -19,18 +19,20 @@ export default function Login() {
     console.log("Failed:", errorInfo);
   };
 
-  const Login = (event) => {
+const Login = (event) => {
     event.preventDefault();
     const data = {
       userId: idRef.current.input.value,
       password: pwRef.current.input.value,
     };
+    console.log(process.env.REACT_APP_DB_HOST + "/api/auth/signin")
     axios
-      .post("/api/auth/signin", data)
+      .post(process.env.REACT_APP_DB_HOST + "/api/auth/signin", data)
       .then((res) => {
         const role = res.data.data.role;
         const username = res.data.data.username;
         const uid = res.data.data.id;
+        console.log(res)
         if (role === "ROLE_USER") {
           navigate("/subpage", {
             state: { name: username, uid: uid, role: role },
@@ -42,6 +44,7 @@ export default function Login() {
         }
       })
       .catch((e) => {
+        console.log(e)
         alert("다시요청!");
       });
   };

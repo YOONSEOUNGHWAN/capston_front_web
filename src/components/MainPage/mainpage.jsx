@@ -20,7 +20,7 @@ export default function Middlepage() {
   return (
     <>
       <div className="login_box">
-        <Nav username={username} role={false} />
+        <Nav username={username} />
         <div className="Container">
           <div className="leftSide">
             <div className="leftUp">
@@ -30,7 +30,7 @@ export default function Middlepage() {
               </>
             </div>
             <div className="leftDown">
-              <Tablelist />
+              <Tablelist loginName={username} role={role} />
             </div>
           </div>
           <div className="rightSide">

@@ -17,6 +17,8 @@ export default function UserInfo() {
   const loginName = location.state.loginName;
   const townId = location.state.userdata.townId;
   const townName = location.state.townName;
+  const uid = location.state.uid;
+  const role = location.state.role;
 
   const [protectorName, setProtectorName] = useState("");
   const [protectorPhone, setProtectorPhone] = useState("");
@@ -36,7 +38,7 @@ export default function UserInfo() {
 
   return (
     <>
-      <Nav username={loginName} role={true} townId={townId} />
+      <Nav username={loginName} role={role} townId={townId} uid={uid}  />
       <div className="Container" id="user_content">
         <br />
         <br />

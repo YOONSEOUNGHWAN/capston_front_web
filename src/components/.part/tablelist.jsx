@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function Tablelist({ townId, townName, loginName }) {
+export default function Tablelist({ townId, townName, loginName, uid, role }) {
   const [townList, setTownList] = useState([]);
   const navigate = useNavigate();
   if (townId) {
@@ -73,6 +73,8 @@ export default function Tablelist({ townId, townName, loginName }) {
                   userdata: text,
                   townName: townName,
                   loginName: loginName,
+                  uid: uid,
+                  role: role,
                 },
               })
             }

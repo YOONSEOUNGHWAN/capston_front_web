@@ -8,9 +8,10 @@ export default function Canvas() {
   const name = location.state.name;
   const townId = location.state.townId
   const role = location.state.role
+  const uid = location.state.uid
   return (
     <>
-    <Nav username={name} role={role} townId={townId} />
+    <Nav uid = {uid} username={name} role={role} townId={townId} />
     <DataTable townId = {townId}/>
     </>
   )

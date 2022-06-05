@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Modal, Button, Input, Radio } from "antd";
 import axios from "axios";
 
-export default function ModalText({townId, text}) {
+export default function ModalText({ townId, text }) {
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const [modalText, setModalText] = React.useState(text);
@@ -31,10 +31,10 @@ export default function ModalText({townId, text}) {
     console.log(value, contents, townId);
 
     const data = {
-      townId : townId,
-      target : value,
-      content : contents,
-    }
+      townId: townId,
+      target: value,
+      content: contents,
+    };
     axios
       .post("/api/message", data)
       .then((res) => {
@@ -47,7 +47,6 @@ export default function ModalText({townId, text}) {
       .catch((e) => {
         alert("다시요청!");
       });
-    
   };
 
   const handleCancel = () => {

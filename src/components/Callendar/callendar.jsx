@@ -68,9 +68,10 @@ export default function Callendar() {
   let name = location.state.name;
   let role = location.state.role;
   let townId = location.state.townId;
+  let uid = location.state.uid;
   return (
     <>
-      <Nav username={name} role={role} townId={townId} />
+      <Nav uid={uid} username={name} role={role} townId={townId} />
       <Calendar
         dateCellRender={dateCellRender}
         monthCellRender={monthCellRender}
